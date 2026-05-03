@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Kind of Plant Are You?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="phone">
+    <!-- Home screen -->
+    <div class="screen active" id="home">
+      <div class="orn home-orn-tl"><img id="orn-home-tl" src="" alt=""></div>
+      <div class="orn home-orn-tr"><img id="orn-home-tr" src="" alt=""></div>
+      <div class="orn home-orn-bl"><img id="orn-home-bl" src="" alt=""></div>
+      <div class="orn home-orn-br"><img id="orn-home-br" src="" alt=""></div>
+
+      <div class="rule rule-top"></div>
+      <div class="rule rule-bot"></div>
+
+      <p class="home-title">What kind of plant are you?</p>
+
+      <div class="pill-wrap home-button-wrap">
+        <button class="pill-btn" id="btn-start">Get Started</button>
+      </div>
+    </div>
+
+    <!-- Question screen -->
+    <div class="screen" id="question">
+      <div class="orn question-orn-bl"><img id="orn-q-bl" src="" alt=""></div>
+      <div class="orn question-orn-br"><img id="orn-q-br" src="" alt=""></div>
+
+      <div class="img-frame">
+        <img id="q-img" src="" alt="">
+      </div>
+
+      <div class="badge-row">
+        <div class="badge-orn"><img id="badge-orn-l" src="" alt=""></div>
+        <div class="badge-pill" id="q-badge-label">Question 1</div>
+        <div class="badge-orn"><img id="badge-orn-r" src="" alt=""></div>
+      </div>
+
+      <p class="q-text" id="q-text">Your ideal weekend looks like...</p>
+
+      <div class="opt-cluster">
+        <div class="opt-slot"><button class="opt-btn" id="opt-0"></button></div>
+        <div class="opt-slot"><button class="opt-btn" id="opt-1"></button></div>
+        <div class="opt-slot"><button class="opt-btn" id="opt-2"></button></div>
+        <div class="opt-slot"><button class="opt-btn" id="opt-3"></button></div>
+      </div>
+
+      <div class="nav-row">
+        <button class="nav-btn" id="btn-prev">
+          <img id="prev-img" src="" alt="Previous">
+        </button>
+        <button class="nav-btn" id="btn-next">
+          <img id="next-img" src="" alt="Next">
+        </button>
+      </div>
+
+      <div class="prog-track">
+        <div class="prog-fill" id="prog-fill"></div>
+      </div>
+    </div>
+
+    <!-- Result screen -->
+    <div class="screen" id="result">
+      <div class="orn result-orn-tl"><img id="orn-r-tl" src="" alt=""></div>
+      <div class="orn result-orn-tr"><img id="orn-r-tr" src="" alt=""></div>
+      <div class="orn result-orn-bl"><img id="orn-r-bl" src="" alt=""></div>
+      <div class="orn result-orn-br"><img id="orn-r-br" src="" alt=""></div>
+
+      <div class="rule rule-top"></div>
+      <div class="rule rule-bot"></div>
+
+      <div class="res-img-wrap">
+        <img id="res-img" src="" alt="">
+      </div>
+
+      <p class="res-plant-name" id="res-name"></p>
+      <p class="res-plant-desc" id="res-desc"></p>
+
+      <div class="pill-wrap result-button-wrap">
+        <button class="pill-btn" id="btn-retake">Take the Quiz again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

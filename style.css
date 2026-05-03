@@ -1,0 +1,570 @@
+/* ============================================
+   Quiz App - Production Quality Styles
+   Following Figma Design Specifications
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Colors */
+  --color-bg: #c9b898;
+  --color-screen-bg: #ede3c2;
+  --color-primary: #e79339;
+  --color-primary-dark: #743722;
+  --color-text: #243350;
+  --color-border: #34432e;
+  --color-accent-light: #b2c1bc;
+  --color-ornament: rgba(220, 174, 91, 0.3);
+  
+  /* Typography */
+  --font-family: "Abhaya Libre", serif;
+  --font-size-lg: 24px;
+  --font-size-md: 20px;
+  --font-size-sm: 16px;
+  
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 14px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  
+  /* Sizing */
+  --phone-width: 402px;
+  --phone-height: 874px;
+  --border-radius-lg: 70px;
+  --border-radius-md: 14px;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  padding: var(--spacing-md);
+}
+
+/* ---------- Responsive centering ---------- */
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+}
+
+/* ---------- Phone Container ---------- */
+.phone {
+  width: var(--phone-width);
+  max-width: 100%;
+  height: var(--phone-height);
+  background: var(--color-screen-bg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- Screen Management ---------- */
+.screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-screen-bg);
+  display: none;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: block;
+  animation: fadeIn 0.22s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Decorative Elements ---------- */
+.orn {
+  position: absolute;
+  width: 39px;
+  height: 39px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Ornament positions */
+.home-orn-tl,
+.result-orn-tl { top: 15px; left: 16px; }
+
+.home-orn-tr,
+.result-orn-tr { top: 15px; right: 16px; }
+
+.home-orn-bl,
+.question-orn-bl,
+.result-orn-bl { top: 818px; left: 16px; }
+
+.home-orn-br,
+.question-orn-br,
+.result-orn-br { top: 818px; right: 16px; }
+
+/* Thin decorative lines */
+.rule {
+  position: absolute;
+  height: 3px;
+  background: var(--color-ornament);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#home .rule-top { top: 33px; left: 45px; width: 305px; }
+#home .rule-bot { top: 836px; left: 55px; width: 292px; }
+#result .rule-top { top: 34px; left: calc(50% - 152px); width: 305px; }
+#result .rule-bot { top: 838px; left: calc(50% - 152px); width: 305px; }
+
+/* ---------- Typography ---------- */
+.home-title,
+.res-plant-name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.home-title { top: 389px; }
+.res-plant-name { top: 535px; left: 45px; transform: none; }
+
+.res-plant-desc {
+  position: absolute;
+  top: 575px;
+  left: 45px;
+  right: 45px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- Buttons - Shared Styles ---------- */
+.pill-btn,
+.opt-btn {
+  background: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+  line-height: normal;
+  transition: 
+
+    background 0.18s,
+
+    color 0.16s,
+
+    border-color 0.16s,
+
+    transform 0.15s ease;
+}
+
+.pill-btn:hover,
+.opt-btn:hover {
+  background: #99A38B;
+  transform: scale(1.04);
+}
+
+.pill-btn:active,
+.opt-btn:active {
+  background: rgba(52, 67, 46, 0.14);
+}
+
+/* Selected state for options */
+.opt-btn.selected {
+  background: #DCAF5B;
+  border-color: var(--color-primary-dark);
+  transform: scale(1.04);
+}
+
+/* ---------- Pill Button Container ---------- */
+.pill-wrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 332px;
+  height: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-button-wrap { top: 456px; }
+.result-button-wrap { top: 743px; }
+
+.pill-btn {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+  width: 313px;
+  height: 49px;
+  padding: 0 14px;
+}
+
+/* ---------- Question Screen ---------- */
+.img-frame {
+  position: absolute;
+  top: 89px;
+  left: 77px;
+  width: 249px;
+  height: 249px;
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary-dark);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-frame img {
+  object-fit: cover;
+  display: block;
+}
+
+/* Question-specific image frame styling (padding + dimensions) */
+
+/* Question 1 */
+#question[data-question="1"] .img-frame {
+  padding: 40px 0 52px 0;
+}
+#question[data-question="1"] .img-frame img {
+  width: 245px;
+  height: 157px;
+}
+
+/* Question 2 */
+#question[data-question="2"] .img-frame {
+  padding: 21px 30px 0 30px;
+}
+#question[data-question="2"] .img-frame img {
+  width: 189px;
+  height: 226px;
+}
+
+/* Question 3 */
+#question[data-question="3"] .img-frame {
+  padding: 22px 17px 8px 12px;
+}
+#question[data-question="3"] .img-frame img {
+  width: 220px;
+  height: 219px;
+}
+
+/* Question 4 */
+#question[data-question="4"] .img-frame {
+  padding: 57px 0 0 0;
+}
+#question[data-question="4"] .img-frame img {
+  width: 245px;
+  height: 190px;
+}
+
+/* Question 5 */
+#question[data-question="5"] .img-frame {
+  padding: 16px 10px 9px 0;
+}
+#question[data-question="5"] .img-frame img {
+  width: 250px;
+  height: 224px;
+}
+
+/* Question 6 */
+#question[data-question="6"] .img-frame {
+  padding: 17px 22px 0 0;
+}
+#question[data-question="6"] .img-frame img {
+  width: 227px;
+  height: 227px;
+}
+
+/* Question 7 */
+#question[data-question="7"] .img-frame {
+  padding: 0 33px 0 33px;
+}
+#question[data-question="7"] .img-frame img {
+  width: 183px;
+  height: 233px;
+}
+
+/* Question 8 */
+#question[data-question="8"] .img-frame {
+  padding: 32px 11px 11px 9px;
+}
+#question[data-question="8"] .img-frame img {
+  width: 229px;
+  height: 206px;
+}
+
+/* Question 9 */
+#question[data-question="9"] .img-frame {
+  padding: 39px 6px 0 5px;
+}
+#question[data-question="9"] .img-frame img {
+  width: 238px;
+  height: 210px;
+}
+
+/* Question 10 */
+#question[data-question="10"] .img-frame {
+  padding: 30px 21px 0 21px;
+}
+#question[data-question="10"] .img-frame img {
+  width: 207px;
+  height: 219px;
+}
+
+
+/* Question badge/label */
+.badge-row {
+  position: absolute;
+  top: 69px;
+  left: 89px;
+  width: 225px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-orn {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+}
+
+.badge-orn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.badge-pill {
+  flex: 1;
+  height: 33px;
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-text);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Question text */
+.q-text {
+  position: absolute;
+  top: 363px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ---------- Option Cluster (Answer Buttons) ---------- */
+.opt-cluster {
+  position: absolute;
+  top: 430px;
+  left: 35px;
+  width: 332px;
+  height: 291px;
+}
+
+.opt-slot {
+  position: absolute;
+  left: 0;
+  width: 332px;
+  height: 74px;
+  overflow: hidden;
+}
+
+.opt-slot:nth-child(1) { top: 0; }
+.opt-slot:nth-child(2) { top: 74px; }
+.opt-slot:nth-child(3) { top: 148px; }
+.opt-slot:nth-child(4) { top: 222px; }
+
+.opt-btn {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+  width: 313px;
+  height: 49px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Image options for Question 3 */
+.opt-img-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opt-img-btn img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---------- Navigation Buttons ---------- */
+.nav-row {
+  position: absolute;
+  top: 747px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-btn {
+  width: 49px;
+  height: 49px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.nav-btn img {
+  width: 45px;
+  height: 45px;
+  display: block;
+}
+
+.nav-btn:hover {
+  opacity: 0.88;
+}
+
+.nav-btn:active {
+  transform: scale(0.92);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn:disabled:hover {
+  opacity: 0.3;
+  transform: none;
+}
+
+/* ---------- Progress Bar ---------- */
+.prog-track {
+  position: absolute;
+  top: 836px;
+  left: 55px;
+  width: 292px;
+  height: 3px;
+  background: var(--color-ornament);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.prog-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+/* ---------- Result Screen ---------- */
+#result .rule-top {
+  top: 34px;
+  left: calc(50% - 152px);
+  width: 305px;
+}
+
+#result .rule-bot {
+  top: 838px;
+  left: calc(50% - 152px);
+  width: 305px;
+}
+
+.res-img-wrap {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 312px;
+  height: 416px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.res-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.res-plant-name {
+  position: absolute;
+  top: 535px;
+  left: 45px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #243350;
+  white-space: nowrap;
+}
+
+.res-plant-desc {
+  position: absolute;
+  top: 570px;
+  left: 45px;
+  width: 314px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #243350;
+  line-height: 1.5;
+  text-align: start;
+}
